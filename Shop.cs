@@ -103,7 +103,7 @@ namespace online_shop
       Console.Write("\nEnter the product Id you want to buy: ");
       var productId = Console.ReadLine();
 
-      Product selectedProduct = _products.FirstOrDefault(product => product.ProductId == productId);
+      Product? selectedProduct = _products.FirstOrDefault(product => product.ProductId == productId);
 
       if (selectedProduct != null)
       {
@@ -123,11 +123,11 @@ namespace online_shop
       Console.Clear();
       DisplayProducts();
       bool success = AddItemToCart();
-      string addMoreProducts = "";
+      string? addMoreProducts = "";
       if (success)
       {
         Console.Write("\nDo you wish to add another product? [Y/N]: ");
-        addMoreProducts = Console.ReadLine().ToUpper().Trim();
+        addMoreProducts = Console.ReadLine()?.ToUpper().Trim();
       }
       if (addMoreProducts == "Y" || !success)
       {
@@ -161,6 +161,8 @@ namespace online_shop
       Console.WriteLine("{0,-20} {1,7}", "Total Cost", StringFormat.Amount(_cart.TotalCost));
 
       Console.ReadKey();
+
+      // TODO: promocode application
     }
   }
 }
